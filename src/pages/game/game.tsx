@@ -3,11 +3,11 @@ import { Fragment } from "react";
 import MainGame from "../../components/layout/mainGame";
 import NavbarGeneral from "../../components/layout/navbarGeneral";
 
-const Game = ({ setRoute, previousRoute }) => {
+const Game = () => {
   return (
     <Fragment>
-      <NavbarGeneral setRoute={setRoute} previousRoute={previousRoute} />
-      <MainGame setRoute={setRoute} />
+      <NavbarGeneral />
+      <MainGame />
     </Fragment>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
-import useAuth from "../../utils/useAuth";
+import useAuth from "../../hooks/useAuth";
 
-const Login = React.memo(({ setRoute }) => {
+const Login = React.memo(() => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error } = useAuth();
@@ -14,7 +14,7 @@ const Login = React.memo(({ setRoute }) => {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-
+  /*
   const handleSubmit = useCallback(
     async (event) => {
       event.preventDefault();
@@ -22,7 +22,7 @@ const Login = React.memo(({ setRoute }) => {
         const userFound = await login(email, password);
 
         if (userFound) {
-          setRoute("/home");
+    
           localStorage.setItem("userlog", JSON.stringify(userFound));
         } else {
           setShowAlert(true);
@@ -30,12 +30,12 @@ const Login = React.memo(({ setRoute }) => {
       } catch (error) {}
     },
     [email, password, setRoute, login]
-  );
-
+  );*/
+  /*
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
+*/ /*
   if (showAlert) {
     return (
       <div className="container__alert">
@@ -56,32 +56,17 @@ const Login = React.memo(({ setRoute }) => {
   const handleRouteRegister = () => {
     setRoute("/register");
   };
-
+*/
   return (
     <main id="main__login">
       <div className="container__login">
-        <form className="form__login" onSubmit={handleSubmit}>
+        <form className="form__login">
           <p className="title">Log in</p>
-          <input
-            placeholder="Email"
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            autoFocus
-          />
+          <input placeholder="Email" type="email" id="email" autoFocus />
           <i className="fa fa-user"></i>
-          <input
-            type="password"
-            placeholder="Password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
+          <input type="password" placeholder="Password" id="password" />
           <div className="btn__sign">
-            <a href={handleRouteRegister} onClick={handleRouteRegister}>
-              Sign Up
-            </a>
+            <a>Sign Up</a>
           </div>
 
           <i className="fa fa-key"></i>

@@ -1,11 +1,17 @@
 import React from "react";
 import useFetch from "../../utils/createRequest";
-const url = "https://api.rawg.io/api/games";
-const key = "key=f99f9038acea4c0c9fdf996f2eb9a1d5";
+import { IfetchProps } from "../../utils/createRequest";
 
-const CardFeatures = React.memo(({ setRoute }) => {
-  const param = "&page_size=6&page=3";
-  const { data, error, isLoading } = useFetch(url, param, "GET", key, "");
+const props: IfetchProps = {
+  url: "https://api.rawg.io/api/games",
+  params: "&page_size=6&page=3",
+  typeMethod: "GET",
+  key: "key=f99f9038acea4c0c9fdf996f2eb9a1d5",
+  id: "",
+};
+
+const CardFeatures = React.memo(() => {
+  const { data, error, isLoading } = useFetch(props);
 
   if (error) {
     return <div>Error al recuperar los datos de la API</div>;
@@ -16,7 +22,6 @@ const CardFeatures = React.memo(({ setRoute }) => {
   }
 
   const handleRouteID = (id) => {
-    setRoute("/game");
     if ("gameID" in localStorage) {
       localStorage.removeItem("gameID");
       localStorage.setItem("gameID", "/" + id);
@@ -39,5 +44,7 @@ const CardFeatures = React.memo(({ setRoute }) => {
     </div>
   );
 });
+
+CardFeatures.displayName = "CardFeatures";
 
 export default CardFeatures;

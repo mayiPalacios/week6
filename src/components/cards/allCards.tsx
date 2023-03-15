@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import { debounce } from "lodash";
-const AllCards = ({ setRoute }) => {
+
+const AllCards = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [itemSearch, setSearch] = useState("");

@@ -1,7 +1,7 @@
 import React from "react";
 
-const NavbarGeneral = ({ setRoute, previousRoute, currentRoute }) => {
-  const handlePreviousRoute = () => {
+const NavbarGeneral = () => {
+  /* const handlePreviousRoute = () => {
     if (currentRoute === "/home") {
       setRoute("/login");
     } else {
@@ -16,19 +16,19 @@ const NavbarGeneral = ({ setRoute, previousRoute, currentRoute }) => {
   const handleRouteHome = () => {
     setRoute("/home");
   };
-
+*/
   return (
     <nav>
       <div className="form__navGeneral">
         <div className="containter__btn--navbarGeneral">
-          <button id="btn__exit--navbar" onClick={handlePreviousRoute}>
+          <button id="btn__exit--navbar">
             <img
               alt=""
               src="https://cdn-icons-png.flaticon.com/512/2760/2760599.png"
             />
           </button>
 
-          <button id="btn__home--navbar" onClick={handleRouteHome}>
+          <button id="btn__home--navbar">
             <img
               alt="img"
               src="https://cdn-icons-png.flaticon.com/512/3959/3959344.png"

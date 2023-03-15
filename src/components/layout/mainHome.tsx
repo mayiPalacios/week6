@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import CardFeatures from "../cards/cardFeatures";
 import CardGenerals from "../cards/cardGeneral";
 
-const MainHome = ({ setRoute }) => {
+const MainHome = () => {
   return (
     <main>
       <section className="section__spam">
@@ -23,8 +23,8 @@ const MainHome = ({ setRoute }) => {
 
       <div>
         <Fragment>
-          <CardFeatures setRoute={setRoute} />
-          <CardGenerals setRoute={setRoute} />
+          <CardFeatures />
+          <CardGenerals />
         </Fragment>
       </div>
     </main>

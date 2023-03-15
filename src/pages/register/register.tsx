@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useFetch from "../../utils/createRequest";
 const url = "https://eminent-incandescent-peripheral.glitch.me/users";
 
-const Register = React.memo(({ setRoute }) => {
+const Register = React.memo(() => {
   const { data } = useFetch(url, "", "GET", "", "");
   const [userName, setUserName] = useState("");
   const [userLastNam, setLastName] = useState("");
@@ -22,7 +22,7 @@ const Register = React.memo(({ setRoute }) => {
   if (!data) {
     return;
   }
-
+  /*
   const handleSubmit = async (e) => {
     e.preventDefault();
     const lastID = data[data.length - 1].id + 1;
@@ -52,10 +52,11 @@ const Register = React.memo(({ setRoute }) => {
       console.error(error);
     }
   };
-
+*/
+  /*
   const handleRouteLogin = () => {
     setRoute("/login");
-  };
+  };*/
 
   if (showAlert) {
     return (
@@ -77,7 +78,7 @@ const Register = React.memo(({ setRoute }) => {
   return (
     <main id="main__register">
       <div className="container__register">
-        <form className="form__register" onSubmit={handleSubmit}>
+        <form className="form__register">
           <p className="title">Register</p>
           <input
             placeholder="Email"

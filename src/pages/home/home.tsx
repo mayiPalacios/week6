@@ -3,15 +3,11 @@ import { Fragment } from "react";
 import Navbar from "../../components/layout/navbar";
 import MainHome from "../../components/layout/mainHome";
 
-const Home = ({ setRoute, previousRoute, currentRoute }) => {
+const Home = () => {
   return (
     <Fragment>
-      <Navbar
-        setRoute={setRoute}
-        previousRoute={previousRoute}
-        currentRoute={currentRoute}
-      />
-      <MainHome setRoute={setRoute} />
+      <Navbar />
+      <MainHome />
     </Fragment>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 const itemsPerPage = 5;
 
-const CardGenerals = React.memo(({ setRoute }) => {
+const CardGenerals = React.memo(() => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     const fetchData = async () => {
