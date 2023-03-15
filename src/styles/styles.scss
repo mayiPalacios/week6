@@ -1,0 +1,19 @@
+//only imports
+@import "./components/navbar";
+@import "./components/footer";
+@import "./components/card";
+@import "./components/main/mainGame";
+@import "./components/main/mainHome";
+@import "./components/containers";
+@import "./components/button";
+@import "./components/comments";
+@import "./components/medias";
+@import "./components/main/mainLogin";
+@import "./components/main/mainRegister";
+
+
+body{
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}

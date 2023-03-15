@@ -1,0 +1,40 @@
+
+.lineSpecialties {
+    position: relative;
+    display: inline-block;
+
+}
+
+.lineSpecialties::after,
+.lineSpecialties::before {
+    position: absolute;
+    content: '';
+    height: 0.4vh;
+    background-color: #2f3541;
+    top: 0.6em;
+}
+
+.lineSpecialties::before {
+    width: 3vw;
+    left: 1vw;
+}
+
+.lineSpecialties::after {
+    width: 20vw;
+    right: -22vw;
+}
+
+textarea{
+        padding: 6.5px 10px;
+    font-size: 1em;
+    font-weight: 400;
+    background-color: transparent;
+    border: 1px solid #313947;
+    border-radius: 4px;
+    transition: .15s border-color;
+        height: 12vh;
+        width: 35vw;
+        color: #fff;
+        font-family: inherit;
+        
+}

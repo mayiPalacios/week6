@@ -1,0 +1,24 @@
+.section__spam{
+    height: 50vh;
+    margin-bottom: 20vh;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 2);
+    div{
+        height: 2vh;
+    }
+
+}
+
+#img__background{
+    padding-top: 12vh;
+    height: 55vh;
+    width: 100%;
+    position: absolute;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+#img__icon--moment{
+    position: absolute;
+    padding-left: 20em;
+    padding-top: 8em;
+    height: 48vh;
+}

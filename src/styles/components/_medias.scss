@@ -1,0 +1,459 @@
+
+@media (max-width:1500px) {
+    /* start  file games      */
+ #img__post--games {
+       height: 80vh;
+        width: 90vw;
+   }
+
+.div__info--post {
+    width: 60vw;
+    margin-left: 200px;
+   }
+
+.div__info--more ul li{
+    width: 12vw;
+}
+
+.div__info--more ul{
+    padding-top: 7vh;
+    gap: 7px;
+    flex-direction: row
+}
+
+.container__section--comments{
+        margin-top: 30vh
+}
+
+
+/*   AllItems file    */
+ 
+.container_card--general {
+  height: auto;
+}
+
+.container__general--items{
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__general{
+    width: 20vw;
+}
+
+.div__info--more {
+ width: 90vw;
+ margin-left: -45vw;
+ margin-top: 20vh;
+}
+
+
+
+
+ }
+
+
+@media (max-width:1108px) {
+    
+      /* start  file games      */
+    
+
+   #img__post--games {
+    height: 70vh;
+        width: 90vw;
+   }
+ 
+   .div__info--post {
+    width: 40vw;
+    margin-left: 100px;
+   }
+ 
+   .container__section--comments { 
+    width: 70%;
+   }
+   .lineSpecialties::after {
+    width: 40vw;
+    right: -42vw;
+   }
+/*   AllItems file    */
+
+.card__all{ 
+   width: 20vw;
+}
+
+.card__all--img{
+    width: 20vw;
+ }
+
+/*    home file        */
+
+
+ .card__center--space{
+    margin-left: 1.9vw;
+}
+.container_card--feature {
+    padding-left: 4vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn__before--general{
+     width: 12vw;
+     height: 4vh;
+}
+
+.btn__after--general{
+    width: 12vw;
+    height: 4vh;
+    
+}
+
+.card__feature{ 
+    width: 25vw;
+    height: 30vh;
+    margin: 0.5rem;
+}
+
+.inpt__wrapper {
+    
+    select{
+       
+        width: 40vw;
+     }
+}
+
+
+}
+
+@media (max-width:1000px) {
+body{
+     width: 100%;
+  }
+
+  /* start   games  file    */
+  
+     #img__post--games {
+        width: 90vw;
+        height: 60vh;
+        top: 0;
+   }
+ 
+   .div__info--post {
+    width: 50vw;
+    margin-left: 100px;
+    margin-top: -13vh;
+   }
+
+   .div__info--more {  
+    margin-top: 11vh
+   }
+
+  .lineSpecialties::after {
+    width: 30vw;
+    right: -35vw;
+   }
+   .container__title--comments {
+
+    h2 {
+        padding-left: 50px;
+    }
+}
+/*   AllItems file    */
+
+.container__all--items{ 
+     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.container_all--card{
+    width: 90%;
+ }
+
+.card__all{ 
+   width: 30vw;
+}
+
+.card__all--img{
+    width: 30vw;
+ }
+
+ /* home file    */
+
+.container_card--general { 
+    height: auto;
+    
+     h1 {
+        padding-right: 50vw;
+        color: #363636;
+    }
+ 
+
+}
+
+.container__general--items {
+   width: 100%;
+   gap: 30px;
+   margin-bottom: 5vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+
+.card__general{
+     
+     button{
+         height: 30vh;
+        width: 40vw;
+      
+    }
+}
+
+.btn__before--general{
+     width: 10vw;
+     height: 4vh;
+    
+}
+
+.btn__after--general{
+    width: 10vw;
+    height: 4vh;
+    
+}
+
+.container_card--feature { 
+    width: 100%;
+}
+
+.card__feature{ 
+    width: 40vw;
+    height: 30vh;
+    margin: 0.5rem;
+}
+
+.container_card--feature {
+    padding-left: 0;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#img__icon--moment {
+    padding-left: 10em;
+}
+
+.inpt__wrapper {
+    display: flex;
+    flex-direction: column;
+    
+    select{
+        margin-top: 12px;
+        margin-left: 0px;
+        width: 30vw;
+        height: 4vh;
+     }
+}
+
+.input-icon {
+    transform: translateY(-170%);
+ }
+
+
+}
+
+
+@media (max-width:700px) {
+
+  .main__game{
+    height: 180vh;
+ }
+ /* start games  file       */
+    
+    #img__post--games {
+        height: 50vh;
+   }
+   
+   .div__info--post {
+    width: 60vw;
+    height: 30vh;
+    margin-left: 100px;
+    margin-top: -23vh;
+   }
+
+   .div__info--more {
+    margin-top: 0vh;
+
+    ul{
+    gap: 40px;
+    }
+}
+
+textarea {
+    width: 60vw;
+}
+
+   .container__section--comments{
+        margin-top: 20vh;
+    height: 80vh;
+    margin-bottom: 8vh;
+   }
+
+    .lineSpecialties::after {
+    width: 20vw;
+    right: -22vw;
+   }
+   .container__title--comments {
+
+    h2 {
+        padding-left: 50px;
+        font-size: 20px;
+    }
+}
+/*   AllItems file    */
+.container__all--items{ 
+     display: grid;
+     grid-template-columns: repeat(1, 1fr);
+}
+
+.container_all--card{
+    width: 60%;
+ }
+
+.card__all{ 
+   width: 50vw;
+}
+
+.card__all--img{
+    width: 50vw;
+ }
+/*   home file     */
+
+#img__icon--moment {
+    padding-left: 4em;
+}
+
+.container__general--items {
+    width: 100%;
+    gap: 30px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10vh;
+ }
+
+ .container_card--general { 
+    height: auto;
+     h1 {
+        padding-right: 40vw;
+    }
+}
+
+.btn__before--general{
+     width: 20vw;
+     height: 4vh;
+    
+}
+
+.btn__after--general{
+    width: 20vw;
+    height: 4vh;
+    
+}
+
+
+
+.card__general{
+    
+     button{
+        background-color: aliceblue;
+        height: 30vh;
+        width: 40vw;
+    }
+}
+
+.inpt__wrapper {
+    display: flex;
+    flex-direction: column;
+    
+    select{
+        margin-top: 12px;
+        margin-left: 0px;
+        width: 30vw;
+        height: 4vh;
+     }
+
+}
+
+.form__navGeneral{
+    display: flex;
+    position: relative;
+}
+.containter__btn--navbarGeneral { 
+    flex-direction: row;
+}
+
+#inpt__search {
+width: 60vw;
+}
+
+.input-icon {
+    transform: translateY(-170%);
+ }
+
+}
+
+
+@media (max-width:490px) {
+
+  
+/*   home file     */
+
+#img__icon--moment {
+    padding-left: 2em;
+    height: 40vh;
+}
+
+.container__general--items {
+    width: 100%;
+    gap: 70px;
+    display: flex;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5vh;
+ }
+
+ .card__general{
+   
+     button{
+        background-color: aliceblue;
+        height: 30vh;
+        width: 60vw;
+    }
+}
+.container_card--feature { 
+    flex-direction: column;
+    .card__feature  {
+        width: 60vw;
+    }
+}
+
+.inpt__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.inpt__wrapper {
+    
+    select{
+       
+        width: 50vw;
+     }
+}
+
+
+
+ }
