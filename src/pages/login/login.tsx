@@ -57,27 +57,27 @@ const Login = React.memo(() => {
     setRoute("/register");
   };
 */
-  return (
-    <main id="main__login">
-      <div className="container__login">
-        <form className="form__login">
-          <p className="title">Log in</p>
-          <input placeholder="Email" type="email" id="email" autoFocus />
-          <i className="fa fa-user"></i>
-          <input type="password" placeholder="Password" id="password" />
-          <div className="btn__sign">
-            <a>Sign Up</a>
-          </div>
+return (
+  <main id="main__login">
+    <div className="container__login">
+      <form className="form__login">
+        <p className="title">Log in</p>
+        <input placeholder="Email" type="email" id="email" autoFocus />
+        <i className="fa fa-user"></i>
+        <input type="password" placeholder="Password" id="password" />
+        <div className="btn__sign">
+          <a>Sign Up</a>
+        </div>
 
-          <i className="fa fa-key"></i>
-          <button type="submit">
-            <i className="spinner"></i>
-            <span className="state">Log in</span>
-          </button>
-        </form>
-      </div>
-    </main>
-  );
+        <i className="fa fa-key"></i>
+        <button type="submit">
+          <i className="spinner"></i>
+          <span className="state">Log in</span>
+        </button>
+      </form>
+    </div>
+  </main>
+);
 });
 
 export default Login;
