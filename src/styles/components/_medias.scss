@@ -25,6 +25,12 @@
         margin-top: 30vh
 }
 
+.card__general{
+    a{
+        width: 22vw;
+    }
+}
+
 
 /*   AllItems file    */
  
@@ -108,6 +114,11 @@
     height: 4vh;
     
 }
+.card__general{
+    a{
+        width: 22vw;
+    }
+}
 
 .card__feature{ 
     width: 25vw;
@@ -187,7 +198,9 @@ body{
         padding-right: 50vw;
         color: #363636;
     }
- 
+ a{
+    width: 40vw;
+ }
 
 }
 
@@ -349,6 +362,10 @@ textarea {
      h1 {
         padding-right: 40vw;
     }
+
+    a{
+        width: 50vw;
+     }
 }
 
 .btn__before--general{
@@ -454,6 +471,12 @@ width: 60vw;
      }
 }
 
+.container_card--general { 
+    
+    a{
+        width: 70vw;
+     }
+}
 
 
  }

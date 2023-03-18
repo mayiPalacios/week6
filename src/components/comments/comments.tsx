@@ -6,9 +6,10 @@ const Comments = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [comment, setcomment] = useState("");
   const [data, setData] = useState("");
-  const thisID = parseInt(localStorage.getItem("gameID").replace("/", ""));
-  const userLog = JSON.parse(localStorage.getItem("userlog"));
+  const thisID = parseInt(localStorage?.getItem?("gameID").replace("/", ""));
+  const userLog = JSON.parse(localStorage?.getItem?("userlog"));
   const [available, setAvailable] = useState("");
+
   useEffect(() => {
     async function fetchData() {
       try {
