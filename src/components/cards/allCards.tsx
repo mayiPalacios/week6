@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
+import { request } from "http";
+import { getAllCards } from "../../utils/callsFetch";
+import { Iresults } from "../../models/interfaceGames";
 
 const AllCards = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Iresults[] | null>();
   const [isLoading, setIsLoading] = useState(false);
   const [itemSearch, setSearch] = useState("");
-  const [itemsPerPage, setItemPage] = useState(10);
+  const [itemsPerPage, setItemPage] = useState<number>(10);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const request = await fetch(
-          `https://api.rawg.io/api/games?key=f99f9038acea4c0c9fdf996f2eb9a1d5&page_size=${itemsPerPage}${itemSearch}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        const data = await request.json();
+        const request = await getAllCards(itemsPerPage,itemSearch);
 
-        setData(data.results);
-        if (request.ok) {
-        }
-      } catch (error) {
+        setData(request?.results);
+       
+      } catch (error:any) {
         setError(error);
       }
-      setIsLoading(error);
+      setIsLoading(false);
     };
     fetchData();
   }, [itemsPerPage, error, itemSearch]);

@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../../utils/createRequest";
 import { IfetchProps } from "../../utils/createRequest";
+import { getCardFeatures } from "../../utils/callsFetch";
+import { Iresults } from "../../models/interfaceGames";
+import { IfetchResults } from "../../models/InterfaceFetch";
 
-const props: IfetchProps = {
-  url: "https://api.rawg.io/api/games",
-  params: "&page_size=6&page=3",
-  typeMethod: "GET",
-  key: "key=f99f9038acea4c0c9fdf996f2eb9a1d5",
-  id: "",
-};
+import.meta.env;
 
 const CardFeatures = React.memo(() => {
-  const { data, error, isLoading } = useFetch(props);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error>();
+  const [data, setData] =
+    useState<Iresults[]>(); /*combinar estos 3 estados en uno con uredReducer */
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const req = await getCardFeatures();
+        setData(req?.results);
+      } catch (error) {
+        setError(error as Error);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   if (error) {
     return <div>Error al recuperar los datos de la API</div>;
@@ -21,7 +34,7 @@ const CardFeatures = React.memo(() => {
     return <div>Cargando...</div>;
   }
 
-  const handleRouteID = (id) => {
+  const handleRouteID = (id: number) => {
     if ("gameID" in localStorage) {
       localStorage.removeItem("gameID");
       localStorage.setItem("gameID", "/" + id);
@@ -32,7 +45,7 @@ const CardFeatures = React.memo(() => {
 
   return (
     <div className="container_card--feature">
-      {data.results?.map((item) => (
+      {data?.map((item) => (
         <div
           key={item.id}
           className="card__feature"
