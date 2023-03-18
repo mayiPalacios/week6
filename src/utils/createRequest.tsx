@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
-
-interface IfetchProps {
-  url: string;
-  params: string;
-  typeMethod: string;
-  key: string;
-  id: string;
-}
-
-interface IfetchData {
-  data: any[];
-}
+import { IfetchProps } from "../models/InterfaceFetch";
+import { IfetchComments} from "../models/InterfaceFetch";
+import { IfetchResults } from "../models/InterfaceFetch";
+import { IfetchUsers } from "../models/InterfaceFetch";
 
 function useFetch(props: IfetchProps) {
-  const [data, setData] = useState<IfetchData>({ data: [] });
+  const [data, setData] = useState<  IfetchResults >({ results: [] } );
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 

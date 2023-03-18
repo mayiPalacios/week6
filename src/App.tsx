@@ -8,24 +8,30 @@ import Home from "./pages/home/home";
 import Game from "./pages/game/game";
 import AllItems from "./pages/home/AllItems";
 import Register from "./pages/register/register";
+import RouteName from "./utils/routes";
+import { IfetchProtectedRoute } from "./models/interfaceFetchProps";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <body>
+    <div>
       <Header />
       <BrowserRouter>
         <Routes>
           <Route index element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Game />} />
-          <Route path="/allCards" element={<AllItems />} />
-          <Route path="/register" element={<Register />} />
+          <Route path={`/${RouteName.LOGIN}`} element={<Login />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path={`/${RouteName.HOME}`} element={<Home />} />
+            <Route path={`/${RouteName.GAME}`} element={<Game />} />
+            <Route path={`/${RouteName.ALLITEMS}`} element={<AllItems />} />
+          </Route>
+
+          <Route path={`/${RouteName.REGISTER}`} element={<Register />} />
         </Routes>
       </BrowserRouter>
       <Footer />
-    </body>
+    </div>
   );
 }
 
