@@ -23,8 +23,8 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path={`/${RouteName.HOME}`} element={<Home />} />
-            <Route path={`/${RouteName.GAME}`} element={<Game />} />
-            <Route path={`/${RouteName.ALLITEMS}${idToken}`} element={<AllItems />} />
+            <Route path={`/${RouteName.GAME}${idToken}`} element={<Game />} />
+            <Route path={`/${RouteName.ALLITEMS}`} element={<AllItems />} />
           </Route>
 
           <Route path={`/${RouteName.REGISTER}`} element={<Register />} />

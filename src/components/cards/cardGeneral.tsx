@@ -55,7 +55,7 @@ const CardGenerals = React.memo(() => {
     } else {
       localStorage.setItem("gameID", "/" + id);
     }
-    navigate(`/game${idToken}`)
+    
   };
 
   return (
@@ -86,11 +86,11 @@ const CardGenerals = React.memo(() => {
       <div className="container__general--items">
         {data?.map((item: any) => (
           <div key={item.id} className="card__general">
-            
+            <Link to={`/game${idToken}`}>
             <button
               style={{ backgroundImage: "url(" + item.background_image + ")" }}
               onClick={() => handleRouteID(item.id)}
-            ></button>
+            ></button></Link>
             <span>{item.name}</span>
           </div>
         ))}
