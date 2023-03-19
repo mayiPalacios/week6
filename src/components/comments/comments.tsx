@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 const url = "https://eminent-incandescent-peripheral.glitch.me/comments";
+import useLocalstorage from "../../hooks/useLocalstorage";
+import { Icomment } from "../../models/interfaceUser";
+import { getComment } from "../../utils/callsFetch";
+
+
 
 const Comments = () => {
-  const [error, setError] = useState(null);
+  const {idToken,token} = useLocalstorage();
+  const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(true);
   const [comment, setcomment] = useState("");
-  const [data, setData] = useState("");
-  const thisID = parseInt(localStorage?.getItem?("gameID").replace("/", ""));
-  const userLog = JSON.parse(localStorage?.getItem?("userlog"));
+  const [data, setData] = useState<Icomment>();
+  const thisID = parseInt(idToken?.replace("/", ""));
+  const userLog = JSON.parse(token);
   const [available, setAvailable] = useState("");
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const request = await fetch(` ${url}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        const req = await request.json();
-
-        setData(req);
-
+        const request = await getComment();
+        setData(request);
+        console.log(request)
         setIsLoading(false);
       } catch (error) {
-        setError(error);
+        setError(error as Error);
         setIsLoading(false);
       }
     }
@@ -44,8 +44,13 @@ const Comments = () => {
     return;
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const postComment:Icomment ={
+         
+    };
+
+
     const lastID = data[data.length - 1].id + 1;
     commentObject.id = lastID;
     commentObject.comment = comment;

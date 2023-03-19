@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const itemsPerPage = 5;
 
 const CardGenerals = React.memo(() => {
-  const { idToken } = useLocalstorage();
+  const {idToken} = useLocalstorage();
   const navigate = useNavigate();
   const [data, setData] = useState<Iresults[] | null>();
   const [isLoading, setIsLoading] = useState(false);
@@ -55,6 +55,7 @@ const CardGenerals = React.memo(() => {
     } else {
       localStorage.setItem("gameID", "/" + id);
     }
+    
   };
 
   return (
@@ -99,4 +100,3 @@ const CardGenerals = React.memo(() => {
 });
 
 export default CardGenerals;
-
