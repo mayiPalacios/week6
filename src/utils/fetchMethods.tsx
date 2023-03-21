@@ -15,9 +15,11 @@ export async function get<T>(path:string,config?:RequestInit):Promise<T>{
 
 export async function post<T,U>(
   path:string,
-  body:T,
+  newbody:T,
   config?:RequestInit,
 ): Promise<U>{
-  const init = {method:'post', body:JSON.stringify(body),...config};
+  console.log(JSON.stringify(newbody));
+  const init = {method:'post', body:JSON.stringify(newbody),...config};
+  console.log(init);
   return http<U>(path,init);
 }

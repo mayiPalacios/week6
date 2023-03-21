@@ -1,62 +1,74 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Iresults } from "../../models/interfaceGames";
+import { Ilogin, Iuser } from "../../models/interfaceUser";
+import { getUser, postUser } from "../../utils/callsFetch";
 import useFetch from "../../utils/createRequest";
-const url = "https://eminent-incandescent-peripheral.glitch.me/users";
 
-const Register = React.memo(() => {
-  const { data } = useFetch(url, "", "GET", "", "");
+const Register = () => {
+  /* const { data } = useFetch(url, "", "GET", "", "");*/
+  let lenghtData=0;
+  const [data, setData] = useState<Ilogin[]>();
   const [userName, setUserName] = useState("");
   const [userLastNam, setLastName] = useState("");
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [alertData, setAlertData] = useState();
+  const [alertData, setAlertData] = useState<string>();
 
-  const userObject = {
-    id: null,
-    name: "",
-    lastName: "",
-    email: "",
-    password: "",
-  };
-
-  if (!data) {
-    return;
-  }
-  /*
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const lastID = data[data.length - 1].id + 1;
-    userObject.id = lastID;
-    userObject.name = userName;
-    userObject.lastName = userLastNam;
-    userObject.email = userEmail;
-    userObject.password = userPassword;
-
-    try {
-      const response = await fetch(
-        `https://eminent-incandescent-peripheral.glitch.me/users`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userObject),
-        }
-      );
-      if (response.ok) {
-        setAlertData("User registered successfully!");
-        setShowAlert(true);
-      } else {
-        setAlertData("Failed to register user.");
-        setShowAlert(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const request = await getUser();
+        setData(request);
+        lenghtData = request?.length ;
+      } catch (error: any) {
+        <div>error</div>;
       }
+       
+    };
+    fetchData();
+  }, []);
+
+  function handlePassword(event: React.ChangeEvent<HTMLInputElement>) {
+    setPassword(event.target.value);
+  }
+
+  function handleEmail(event: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(event.target.value);
+  }
+
+  function handleName(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserName(event.target.value);
+  }
+
+  function handleLastname(event: React.ChangeEvent<HTMLInputElement>) {
+    setLastName(event.target.value);
+  }
+
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+   
+    const post: Iuser = {
+      name: userName,
+      lastName: userLastNam, 
+      email: userEmail,
+      password: userPassword,
+    };
+         
+   try {
+      const response = await postUser(post);
+        console.log(response);
+      setAlertData("User registered successfully!");
+      setShowAlert(true);
     } catch (error) {
       console.error(error);
+      setAlertData("Failed to register user.");
+      setShowAlert(true);
     }
   };
-*/
-  /*
-  const handleRouteLogin = () => {
-    setRoute("/login");
-  };*/
+
+  const handleRouteLogin = () => {};
 
   if (showAlert) {
     return (
@@ -78,40 +90,42 @@ const Register = React.memo(() => {
   return (
     <main id="main__register">
       <div className="container__register">
-        <form className="form__register">
+        <form className="form__register" onSubmit={handleSubmit}>
           <p className="title">Register</p>
           <input
             placeholder="Email"
             type="email"
             id="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmail}
             autoFocus
           />
+
           <i className="fa fa-user"></i>
           <input
             type="password"
             placeholder="Password"
             id="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePassword}
           />
+
           <i className="fa fa-user"></i>
           <input
             type="name"
             placeholder="name"
             id="name"
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={handleName}
           />
+
           <i className="fa fa-user"></i>
           <input
             type="last__name"
             placeholder="Last name"
             id="last__name"
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={handleLastname}
           />
+
           <div className="btn__sign">
-            <a href={handleRouteLogin} onClick={handleRouteLogin}>
-              Sign In
-            </a>
+            <a onClick={handleRouteLogin}>Sign In</a>
           </div>
 
           <i className="fa fa-key"></i>
@@ -123,6 +137,6 @@ const Register = React.memo(() => {
       </div>
     </main>
   );
-});
+};
 
 export default Register;

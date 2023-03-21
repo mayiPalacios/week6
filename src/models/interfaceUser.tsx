@@ -13,10 +13,17 @@ export interface Icomment {
 }
 
 export interface Iuser {
-    id:       number;
+    id?:       number;
     name:     string;
-    lastName: string;
+    lastName?: string;
     email:    string;
+    password: string;
+}
+
+export interface Ilogin extends Iuser{
+    id:number,
+    name:string,
+    email: string;
     password: string;
 }
 

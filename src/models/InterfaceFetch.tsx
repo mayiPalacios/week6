@@ -21,3 +21,4 @@ export interface IfetchResults {
 export interface IfetchUsers {
   users: Iuser[];
 }
+

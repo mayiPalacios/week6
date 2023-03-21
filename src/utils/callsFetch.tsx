@@ -1,6 +1,8 @@
 import { Iresults } from "../models/interfaceGames";
-import { get } from "./fetchMethods";
-import { IfetchResults } from "../models/InterfaceFetch";
+import { get,post } from "./fetchMethods";
+import { IfetchResults, IfetchUsers } from "../models/InterfaceFetch";
+import { Ilogin, Iuser } from "../models/interfaceUser";
+
 
 export const getCardFeatures = async () => {
   try {
@@ -40,7 +42,34 @@ export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
       }&page_size=${itemsPerPage}${itemSearch}
         `
     );
+
+    return char;
   } catch (error) {
     console.log(error);
   }
 };
+
+export const getUser = async () => {
+  try {
+    const char = await get<Ilogin[]>(`${import.meta.env.VITE_LOCAL_API}`);
+    return char;
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const postUser = async (body:Iuser) =>{
+
+  console.log(body);
+  try{
+    const response = post<Iuser,Iuser>(`${import.meta.env.VITE_LOCAL_API}`,body,{headers: { "Content-Type": "application/json" }});
+    return response;
+      
+  }catch(error){
+      console.log(error)
+  }
+
+}
+
