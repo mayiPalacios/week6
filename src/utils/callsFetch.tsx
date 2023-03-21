@@ -1,6 +1,10 @@
 import { Iresults } from "../models/interfaceGames";
 import { get, post } from "./fetchMethods";
-import { IfetchPlatforms, IfetchResults, IfetchUsers } from "../models/InterfaceFetch";
+import {
+  IfetchPlatforms,
+  IfetchResults,
+  IfetchUsers,
+} from "../models/InterfaceFetch";
 import { Ilogin, Iuser } from "../models/interfaceUser";
 
 export const getCardFeatures = async () => {
@@ -48,15 +52,14 @@ export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
 };
 
 export const getViewDetails = async () => {
-  try{
+  try {
     const request = await get<IfetchPlatforms[]>(
       `${import.meta.env.VITE_API_URL}?key=${import.meta.env.VITE_KEY_API}`
     );
     return request;
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
- 
 };
 
 export const getUser = async () => {
@@ -81,3 +84,4 @@ export const postUser = async (body: Iuser) => {
     console.log(error);
   }
 };
+

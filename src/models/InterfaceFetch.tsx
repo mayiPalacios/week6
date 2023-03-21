@@ -23,7 +23,7 @@ export interface IfetchUsers {
   users: Iuser[];
 }
 
-export interface IfetchPlatforms{
-  platforms:Iplatforms[];
+export interface IfetchPlatforms {
+  platforms: Iplatforms[];
 }
 
