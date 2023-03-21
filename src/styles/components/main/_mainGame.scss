@@ -1,16 +1,15 @@
 .main__game {
   background-image: url("https://html.nkdev.info/goodgames/assets/images/bg-top-5.png");
-  background-color: #313947; 
+  background-color: #313947;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 200vh;
   margin-bottom: -7vh;
-
 }
 
-#section__games--elements{
+#section__games--elements {
   margin-bottom: 12vh;
 }
 
@@ -22,24 +21,23 @@
   color: #d3d3d3;
   position: absolute;
   padding: 15px;
-  height:32vh;
+  height: 32vh;
   left: 0;
   margin-left: 200px;
-  margin-top:-5vh ;
-  
-  
-  img{
+  margin-top: -5vh;
+
+  img {
     height: 40px;
     float: right;
   }
 
-  img:hover{ 
+  img:hover {
     cursor: pointer;
   }
 }
 
-.div__info--more{
-  background-color: rgb(0, 0, 0,0.85);
+.div__info--more {
+  background-color: rgb(0, 0, 0, 0.85);
   margin-top: 10vh;
   display: flex;
   justify-content: center;
@@ -48,39 +46,36 @@
   width: 80vw;
   color: #d3d3d3;
   height: 30vh;
-  img{
+  img {
     height: 4vh;
     color: #d3d3d3;
   }
-  
-  ul{
+
+  ul {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     padding-left: 0vw;
     padding-top: 2vh;
-   gap: 20px;
-    li{
+    gap: 20px;
+    li {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       flex-direction: row;
       width: 10vw;
       gap: 15px;
-      div{
+      div {
         display: flex;
         gap: 3px;
-      } 
+      }
     }
-
   }
 
-  .title__span{
-     padding-top: 12px
+  .title__span {
+    padding-top: 12px;
   }
-
 }
-
 
 #img__post--games {
   position: absolute;

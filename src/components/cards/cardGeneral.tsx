@@ -1,16 +1,14 @@
-import { request } from "http";
 import React, { useState, useEffect, useRef } from "react";
 import { Iresults } from "../../models/interfaceGames";
 import { getGeneralCards } from "../../utils/callsFetch";
 import { useNavigate } from "react-router-dom";
 import useLocalstorage from "../../hooks/useLocalstorage";
-import { replace } from "lodash";
 import { Link } from "react-router-dom";
 
 const itemsPerPage = 5;
 
 const CardGenerals = React.memo(() => {
-  const {idToken} = useLocalstorage();
+  const { idToken } = useLocalstorage();
   const navigate = useNavigate();
   const [data, setData] = useState<Iresults[] | null>();
   const [isLoading, setIsLoading] = useState(false);
@@ -48,6 +46,10 @@ const CardGenerals = React.memo(() => {
     setCurrentPage(currentPage + 1);
   };
 
+  const handleNavigation = () => {
+    navigate("/allcards");
+  };
+
   const handleRouteID = (id: number) => {
     if ("gameID" in localStorage) {
       localStorage.removeItem("gameID");
@@ -55,7 +57,6 @@ const CardGenerals = React.memo(() => {
     } else {
       localStorage.setItem("gameID", "/" + id);
     }
-    
   };
 
   return (
@@ -63,7 +64,7 @@ const CardGenerals = React.memo(() => {
       <div className="container__title--general">
         <h1>Generals card</h1>
 
-        <button className="btn__all--card">
+        <button onClick={handleNavigation} className="btn__all--card">
           <h2>All cards</h2>
         </button>
       </div>
@@ -87,10 +88,13 @@ const CardGenerals = React.memo(() => {
         {data?.map((item: any) => (
           <div key={item.id} className="card__general">
             <Link to={`/game${idToken}`}>
-            <button
-              style={{ backgroundImage: "url(" + item.background_image + ")" }}
-              onClick={() => handleRouteID(item.id)}
-            ></button></Link>
+              <button
+                style={{
+                  backgroundImage: "url(" + item.background_image + ")",
+                }}
+                onClick={() => handleRouteID(item.id)}
+              ></button>
+            </Link>
             <span>{item.name}</span>
           </div>
         ))}

@@ -3,24 +3,24 @@ const url = "https://eminent-incandescent-peripheral.glitch.me/comments";
 import useLocalstorage from "../../hooks/useLocalstorage";
 import { Icomment } from "../../models/interfaceUser";
 import { getComment } from "../../utils/callsFetch";
-
-
+import { postComment } from "../../utils/callsFetch";
 
 const Comments = () => {
-  const {idToken,token} = useLocalstorage();
+  const { idToken, token } = useLocalstorage();
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(true);
   const [comment, setcomment] = useState("");
   const [data, setData] = useState<Icomment>();
   const thisID = parseInt(idToken?.replace("/", ""));
   const userLog = JSON.parse(token);
-  const [available, setAvailable] = useState("");
+  const [available, setAvailable] = useState<Icomment>();
+
   useEffect(() => {
     async function fetchData() {
       try {
         const request = await getComment();
         setData(request);
-        console.log(request)
+        console.log(request);
         setIsLoading(false);
       } catch (error) {
         setError(error as Error);
@@ -31,43 +31,24 @@ const Comments = () => {
     fetchData();
   }, [available]);
 
-  const commentObject = {
-    id: null,
-    comment: "",
-    post_id: null,
-    user_id: null,
-    name_user: "",
-    last_name: "",
-  };
-
   if (!data) {
     return;
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const postComment:Icomment ={
-         
+
+    const post: Icomment = {
+      comment: comment,
+      post_id: thisID,
+      user_id: userLog.id,
+      name_user: userLog.name,
+      last_name: userLog.lastName,
     };
 
-
-    const lastID = data[data.length - 1].id + 1;
-    commentObject.id = lastID;
-    commentObject.comment = comment;
-    commentObject.post_id = thisID;
-    commentObject.user_id = userLog.id;
-    commentObject.name_user = userLog.name;
-    commentObject.last_name = userLog.lastName;
-
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(commentObject),
-      });
-      if (response.ok) {
-        setAvailable(comment);
-      }
+      const response = await postComment(post);
+      setAvailable(response);
     } catch (error) {
       console.error(error);
     }
@@ -78,7 +59,7 @@ const Comments = () => {
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p>{error.message}</p>;
   }
 
   return (

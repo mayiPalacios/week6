@@ -8,13 +8,20 @@ import { getViewDetails } from "../../utils/callsFetch";
 import { Idetails, Iresults } from "../../models/interfaceGames";
 import { Iplatforms } from "../../models/interfaceGames";
 import { Iuser } from "../../models/interfaceUser";
+import { useLocation } from "react-router-dom";
 
 const MainGame = React.memo(() => {
   let id = localStorage.getItem("gameID");
+  const location = useLocation();
   const [data, setData] = useState<Idetails>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   /* const { data, error, isLoading } = useFetch(url, "", "GET", key, id);*/
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Mover el scroll a la parte superior de la página
+  }, [location]);
+
   useEffect(() => {
     const fetchData = async () => {
       const reques = await getViewDetails();

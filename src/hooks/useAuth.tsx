@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Ilogin } from "../models/interfaceUser";
 import { getUser } from "../utils/callsFetch";
-import { IfetchUsers } from "../models/InterfaceFetch";
+import { Iuser } from "../models/interfaceUser";
 
 const useAuth = () => {
   const [userJson, setuserJson] = useState<Ilogin[]>();
@@ -28,7 +28,13 @@ const useAuth = () => {
     );
 
     if (userFound) {
-      return userFound;
+      const localUser: Iuser = {
+        id: userFound?.id,
+        name: userFound?.name,
+        lastName: userFound?.lastName,
+        email: userFound?.email,
+      };
+      return localUser;
     } else {
       return false;
     }
