@@ -1,3 +1,4 @@
+
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./pages/login/login";
 import Header from "./components/layout/header";
@@ -11,7 +12,7 @@ import { ProtectedRoute } from "./utils/ProtectedRoute";
 import useLocalstorage from "./hooks/useLocalstorage";
 
 function App() {
-  const { idToken } = useLocalstorage();
+  const {idToken} = useLocalstorage();
   return (
     <div>
       <Header />
@@ -22,11 +23,8 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path={`/${RouteName.HOME}`} element={<Home />} />
-            <Route path={`/${RouteName.GAME}`} element={<Game />} />
-            <Route
-              path={`/${RouteName.ALLITEMS}${idToken}`}
-              element={<AllItems />}
-            />
+            <Route path={`/${RouteName.GAME}${idToken}`} element={<Game />} />
+            <Route path={`/${RouteName.ALLITEMS}`} element={<AllItems />} />
           </Route>
 
           <Route path={`/${RouteName.REGISTER}`} element={<Register />} />
@@ -38,3 +36,4 @@ function App() {
 }
 
 export default App;
+

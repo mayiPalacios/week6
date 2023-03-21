@@ -4,10 +4,21 @@ export interface Iresults {
   name?: string;
 }
 
-export interface Iplatforms extends Iresults {
+export interface InamePlatform {
+  name: string;
+}
+
+export interface Iplatforms {
+  platform: InamePlatform;
+  id: number;
+}
+
+export interface Idetails {
   id: number;
   background_image: string;
   name?: string;
   rating?: string;
   description?: string;
+  platforms: Iplatforms[];
 }
+
