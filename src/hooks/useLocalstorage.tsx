@@ -3,7 +3,7 @@ const useLocalstorage = () => {
   const idToken = localStorage.getItem("gameID");
   return {
     token,
-    idToken
+    idToken,
   };
 };
 

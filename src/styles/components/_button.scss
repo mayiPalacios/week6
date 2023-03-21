@@ -1,52 +1,52 @@
-.btn__before--general{
-     width: 5vw;
-     height: 4vh;
-     border-radius: 0.3em;
-     border: none;
-     background-color: rgb(201, 201, 201);
+.btn__before--general {
+  width: 5vw;
+  height: 4vh;
+  border-radius: 0.3em;
+  border: none;
+  background-color: rgb(201, 201, 201);
 }
 
-.btn__after--general{
-    width: 5vw;
-    height: 4vh;
-    border-radius: 0.3em;
-    border: cornflowerblue;
-    background-color: cornflowerblue;
+.btn__after--general {
+  width: 5vw;
+  height: 4vh;
+  border-radius: 0.3em;
+  border: cornflowerblue;
+  background-color: cornflowerblue;
 }
 
-.btn__before--general:hover{
+.btn__before--general:hover {
+  cursor: pointer;
+}
+.btn__after--general:hover {
+  cursor: pointer;
+}
+
+.container__btn--general {
+  padding-top: 2vh;
+  display: flex;
+  gap: 12px;
+}
+
+.div__form--comments {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  button {
+    margin-top: 12px;
+    width: 150px;
+    line-height: 1.2;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.87rem;
+    padding: 9px 19px;
+    color: #fff;
+    background-color: #dd163b;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  button:hover {
     cursor: pointer;
- }
-.btn__after--general:hover{ 
-    cursor: pointer;
+  }
 }
-
-.container__btn--general{
-    padding-top: 2vh;
-    display: flex;
-    gap: 12px;
-}
-
-.div__form--comments{
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-       button {
-        margin-top: 12px;
-        width: 150px;
-        line-height: 1.2;
-        border-radius: 4px;
-        font-weight: 600;
-        font-size: .87rem;
-        padding: 9px 19px;
-        color: #fff;
-        background-color: #dd163b;
-        text-align: center;
-        text-transform: uppercase;
-        white-space: nowrap;
-    }
-    
-
-     button:hover { cursor: pointer;}
-}
-

@@ -91,7 +91,7 @@ export const postUser = async (body: Iuser) => {
 export const postComment = async (body: Icomment) => {
   try {
     const response = post<Icomment, Icomment>(
-      `${import.meta.env.VITE_LOCAL_API}/comments`,
+      `${import.meta.env.VITE_LOCAL_API_COMMENTS}`,
       body,
       { headers: { "Content-Type": "application/json" } }
     );
@@ -106,7 +106,7 @@ export const getComment = async () => {
     const response = get<Icomment>(
       `${import.meta.env.VITE_LOCAL_API_COMMENTS}`
     );
-    console.log(response)
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
