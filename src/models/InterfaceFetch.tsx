@@ -22,4 +22,3 @@ export interface IfetchUsers {
   users: Iuser[];
 }
 
-

@@ -3,6 +3,7 @@ import { get,post } from "./fetchMethods";
 import { IfetchResults, IfetchUsers } from "../models/InterfaceFetch";
 import { Ilogin, Iuser } from "../models/interfaceUser";
 
+
 export const getCardFeatures = async () => {
   try {
     const char = await get<IfetchResults>(
@@ -41,6 +42,7 @@ export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
       }&page_size=${itemsPerPage}${itemSearch}
         `
     );
+
     return char;
   } catch (error) {
     console.log(error);
@@ -51,10 +53,12 @@ export const getUser = async () => {
   try {
     const char = await get<Ilogin[]>(`${import.meta.env.VITE_LOCAL_API}`);
     return char;
+
   } catch (error) {
     console.log(error);
   }
 };
+
 
 export const postUser = async (body:Iuser) =>{
 
@@ -68,3 +72,4 @@ export const postUser = async (body:Iuser) =>{
   }
 
 }
+

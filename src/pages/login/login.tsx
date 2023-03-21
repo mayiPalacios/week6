@@ -62,6 +62,7 @@ const Login = React.memo(() => {
     navigate("/register");
   };
 
+
   return (
     <main id="main__login">
       <div className="container__login">
@@ -86,16 +87,15 @@ const Login = React.memo(() => {
           <div className="btn__sign">
             <a onClick={handleRouteRegister}>Sign Up</a>
           </div>
-
-          <i className="fa fa-key"></i>
-          <button type="submit">
-            <i className="spinner"></i>
-            <span className="state">Log in</span>
-          </button>
-        </form>
-      </div>
-    </main>
-  );
+        <i className="fa fa-key"></i>
+        <button type="submit">
+          <i className="spinner"></i>
+          <span className="state">Log in</span>
+        </button>
+      </form>
+    </div>
+  </main>
+);
 });
 
 export default Login;
