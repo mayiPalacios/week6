@@ -1,5 +1,9 @@
 import { get, post } from "./fetchMethods";
-import { IfetchPlatforms, IfetchResults, IfetchUsers } from "../models/InterfaceFetch";
+import {
+  IfetchPlatforms,
+  IfetchResults,
+  IfetchUsers,
+} from "../models/InterfaceFetch";
 import { Ilogin, Iuser } from "../models/interfaceUser";
 import useLocalstorage from "../hooks/useLocalstorage";
 import { Idetails } from "../models/interfaceGames";
@@ -50,15 +54,15 @@ export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
 
 export const getViewDetails = async () => {
   const { idToken } = useLocalstorage();
+
   try{
     const request = await get<Idetails>(
       `${import.meta.env.VITE_API_URL}${idToken}?key=${import.meta.env.VITE_KEY_API}`
     );
     return request;
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
- 
 };
 
 export const getUser = async () => {
@@ -83,3 +87,4 @@ export const postUser = async (body: Iuser) => {
     console.log(error);
   }
 };
+
