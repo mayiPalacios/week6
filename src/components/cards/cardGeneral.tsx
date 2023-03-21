@@ -2,26 +2,29 @@ import { request } from "http";
 import React, { useState, useEffect, useRef } from "react";
 import { Iresults } from "../../models/interfaceGames";
 import { getGeneralCards } from "../../utils/callsFetch";
+import { useNavigate } from "react-router-dom";
+import useLocalstorage from "../../hooks/useLocalstorage";
+import { replace } from "lodash";
+import { Link } from "react-router-dom";
+
 const itemsPerPage = 5;
 
-
-
 const CardGenerals = React.memo(() => {
+  const { idToken } = useLocalstorage();
+  const navigate = useNavigate();
   const [data, setData] = useState<Iresults[] | null>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
- 
-  
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const request = await getGeneralCards(itemsPerPage,currentPage);
-        
+        const request = await getGeneralCards(itemsPerPage, currentPage);
+
         setData(request?.results);
-      } catch (_error:any) {
+      } catch (_error: any) {
         setError(_error);
       }
       setIsLoading(false);
@@ -45,14 +48,14 @@ const CardGenerals = React.memo(() => {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleRouteID = (id:number) => {
- 
+  const handleRouteID = (id: number) => {
     if ("gameID" in localStorage) {
       localStorage.removeItem("gameID");
       localStorage.setItem("gameID", "/" + id);
     } else {
       localStorage.setItem("gameID", "/" + id);
     }
+    navigate(`/game${idToken}`);
   };
 
   return (
@@ -60,7 +63,7 @@ const CardGenerals = React.memo(() => {
       <div className="container__title--general">
         <h1>Generals card</h1>
 
-        <button className="btn__all--card" >
+        <button className="btn__all--card">
           <h2>All cards</h2>
         </button>
       </div>
@@ -81,7 +84,7 @@ const CardGenerals = React.memo(() => {
         </button>
       </div>
       <div className="container__general--items">
-        {data?.map((item:any) => (
+        {data?.map((item: any) => (
           <div key={item.id} className="card__general">
             <button
               style={{ backgroundImage: "url(" + item.background_image + ")" }}
@@ -96,3 +99,4 @@ const CardGenerals = React.memo(() => {
 });
 
 export default CardGenerals;
+

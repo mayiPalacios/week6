@@ -1,15 +1,29 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Fragment } from "react";
 import Comments from "../comments/comments";
 import useFetch from "../../utils/createRequest";
 import startImage from "../../IMG/star.png";
 import remoteImg from "../../IMG/remote.png";
-const url = "https://api.rawg.io/api/games";
-const key = "key=f99f9038acea4c0c9fdf996f2eb9a1d5";
+import { getViewDetails } from "../../utils/callsFetch";
+import { Iresults } from "../../models/interfaceGames";
+import { Iplatforms } from "../../models/interfaceGames";
 
 const MainGame = React.memo(() => {
   let id = localStorage.getItem("gameID");
-  const { data, error, isLoading } = useFetch(url, "", "GET", key, id);
+  const [data,setData] = useState<Iplatforms[]>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+ /* const { data, error, isLoading } = useFetch(url, "", "GET", key, id);*/
+ useEffect(() => {
+ 
+  const fetchData = async () => {
+      const reques = await  getViewDetails();
+      setData(reques?.platforms);
+  }
+  fetchData();
+
+
+ }, []);
 
   if (error) {
     return <div>Error al recuperar los datos de la API</div>;

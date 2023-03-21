@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Iresults } from "../../models/interfaceGames";
 import { Ilogin, Iuser } from "../../models/interfaceUser";
 import { getUser, postUser } from "../../utils/callsFetch";
-import useFetch from "../../utils/createRequest";
 
 const Register = () => {
-  /* const { data } = useFetch(url, "", "GET", "", "");*/
-  let lenghtData=0;
   const [data, setData] = useState<Ilogin[]>();
   const [userName, setUserName] = useState("");
   const [userLastNam, setLastName] = useState("");
@@ -20,11 +17,9 @@ const Register = () => {
       try {
         const request = await getUser();
         setData(request);
-        lenghtData = request?.length ;
       } catch (error: any) {
         <div>error</div>;
       }
-       
     };
     fetchData();
   }, []);
@@ -45,20 +40,19 @@ const Register = () => {
     setLastName(event.target.value);
   }
 
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-   
+
     const post: Iuser = {
       name: userName,
-      lastName: userLastNam, 
+      lastName: userLastNam,
       email: userEmail,
       password: userPassword,
     };
-         
-   try {
+
+    try {
       const response = await postUser(post);
-        console.log(response);
+      console.log(response);
       setAlertData("User registered successfully!");
       setShowAlert(true);
     } catch (error) {
@@ -140,3 +134,4 @@ const Register = () => {
 };
 
 export default Register;
+

@@ -1,18 +1,21 @@
 import { Iresults } from "../models/interfaceGames";
-import { get,post } from "./fetchMethods";
-import { IfetchResults, IfetchUsers } from "../models/InterfaceFetch";
+import { get, post } from "./fetchMethods";
+import {
+  IfetchPlatforms,
+  IfetchResults,
+  IfetchUsers,
+} from "../models/InterfaceFetch";
 import { Ilogin, Iuser } from "../models/interfaceUser";
-
 
 export const getCardFeatures = async () => {
   try {
-    const char = await get<IfetchResults>(
+    const request = await get<IfetchResults>(
       `${import.meta.env.VITE_API_URL}?key=${
         import.meta.env.VITE_KEY_API
       }&page_size=6&page=3`
     );
 
-    return char;
+    return request;
   } catch (error) {
     console.log(error);
   }
@@ -23,12 +26,12 @@ export const getGeneralCards = async (
   currentPage: number
 ) => {
   try {
-    const char = await get<IfetchResults>(
+    const request = await get<IfetchResults>(
       `${import.meta.env.VITE_API_URL}?key=${
         import.meta.env.VITE_KEY_API
       }&page_size=${itemsPerPage}&page=${currentPage}`
     );
-    return char;
+    return request;
   } catch (error) {
     console.log(error);
   }
@@ -36,14 +39,24 @@ export const getGeneralCards = async (
 
 export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
   try {
-    const char = await get<IfetchResults>(
+    const request = await get<IfetchResults>(
       `${import.meta.env.VITE_API_URL}?key=${
         import.meta.env.VITE_KEY_API
       }&page_size=${itemsPerPage}${itemSearch}
         `
     );
+    return request;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    return char;
+export const getViewDetails = async () => {
+  try {
+    const request = await get<IfetchPlatforms[]>(
+      `${import.meta.env.VITE_API_URL}?key=${import.meta.env.VITE_KEY_API}`
+    );
+    return request;
   } catch (error) {
     console.log(error);
   }
@@ -51,25 +64,24 @@ export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
 
 export const getUser = async () => {
   try {
-    const char = await get<Ilogin[]>(`${import.meta.env.VITE_LOCAL_API}`);
-    return char;
-
+    const request = await get<Ilogin[]>(`${import.meta.env.VITE_LOCAL_API}`);
+    return request;
   } catch (error) {
     console.log(error);
   }
 };
 
-
-export const postUser = async (body:Iuser) =>{
-
+export const postUser = async (body: Iuser) => {
   console.log(body);
-  try{
-    const response = post<Iuser,Iuser>(`${import.meta.env.VITE_LOCAL_API}`,body,{headers: { "Content-Type": "application/json" }});
+  try {
+    const response = post<Iuser, Iuser>(
+      `${import.meta.env.VITE_LOCAL_API}`,
+      body,
+      { headers: { "Content-Type": "application/json" } }
+    );
     return response;
-      
-  }catch(error){
-      console.log(error)
+  } catch (error) {
+    console.log(error);
   }
-
-}
+};
 
