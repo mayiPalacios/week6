@@ -81,11 +81,11 @@ const Login = React.memo(() => {
             value={password}
             onChange={handlePasswordChange}
           />
+          <i className="fa fa-key"></i>
           <div className="btn__sign">
             <a onClick={handleRouteRegister}>Sign Up</a>
           </div>
 
-          <i className="fa fa-key"></i>
           <button type="submit">
             <i className="spinner"></i>
             <span className="state">Log in</span>

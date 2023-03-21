@@ -12,22 +12,13 @@ const NavbarGeneral = () => {
 
   return (
     <nav>
-      <div className="form__navGeneral">
-        <div className="containter__btn--navbarGeneral">
-          <button id="">
-            <img
-              alt=""
-              src="https://cdn-icons-png.flaticon.com/512/2760/2760599.png"
-            />
-          </button>
-
-          <button onClick={handleClick} id="btn__home--navbar">
-            <img
-              alt="img"
-              src="https://cdn-icons-png.flaticon.com/512/3959/3959344.png"
-            />
-          </button>
-        </div>
+      <div className="containter__btn--navbarGeneral">
+        <button onClick={handleClick} id="btn__home--navbar">
+          <img
+            alt="img"
+            src="https://cdn-icons-png.flaticon.com/512/3959/3959344.png"
+          />
+        </button>
       </div>
     </nav>
   );

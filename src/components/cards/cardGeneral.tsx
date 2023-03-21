@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Iresults } from "../../models/interfaceGames";
 import { getGeneralCards } from "../../utils/callsFetch";
 import { useNavigate } from "react-router-dom";
@@ -59,6 +59,8 @@ const CardGenerals = React.memo(() => {
     }
   };
 
+  const length = data?.length ? data.length : 0;
+
   return (
     <div className="container_card--general">
       <div className="container__title--general">
@@ -79,7 +81,7 @@ const CardGenerals = React.memo(() => {
         <button
           className="btn__after--general"
           onClick={handleNextCurrentPage}
-          disabled={data?.length < itemsPerPage}
+          disabled={length < itemsPerPage}
         >
           Next
         </button>

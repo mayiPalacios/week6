@@ -103,7 +103,7 @@ export const postComment = async (body: Icomment) => {
 
 export const getComment = async () => {
   try {
-    const response = get<Icomment>(
+    const response = get<Icomment[]>(
       `${import.meta.env.VITE_LOCAL_API_COMMENTS}`
     );
     console.log(response);

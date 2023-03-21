@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import useFetch from "../../utils/createRequest";
-import { IfetchProps } from "../../utils/createRequest";
+import useLocalstorage from "../../hooks/useLocalstorage";
 import { getCardFeatures } from "../../utils/callsFetch";
 import { Iresults } from "../../models/interfaceGames";
 import { IfetchResults } from "../../models/InterfaceFetch";
 import { useReducer } from "react";
+import { Link } from "react-router-dom";
 import.meta.env;
 
 type State = {
@@ -15,6 +15,8 @@ type State = {
 
 const initialState: State = {
   isLoading: false,
+  data: [],
+  error: undefined,
 };
 
 type Action =
@@ -36,22 +38,18 @@ function reducer(state: State, action: Action): State {
 }
 
 const CardFeatures = React.memo(() => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error>();
-  const [data, setData] =
-    useState<Iresults[]>(); /*combinar estos 3 estados en uno con uredReducer */
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { idToken } = useLocalstorage();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const req = await getCardFeatures();
-        setData(req?.results);
-        /* dispatch({ type: "FETCH_SUCCESS", data: req?.results });*/
+        if (req) {
+          dispatch({ type: "FETCH_SUCCESS", data: req?.results });
+        }
       } catch (error) {
-        /*  setError(error as Error);*/
-        /* dispatch({ type: "FETCH_FAILURE", error: error as unknown });*/
-        /* setIsLoading(false);*/
+        dispatch({ type: "FETCH_FAILURE", error: error as Error });
       }
     };
     fetchData();
@@ -76,14 +74,16 @@ const CardFeatures = React.memo(() => {
 
   return (
     <div className="container_card--feature">
-      {data?.map((item) => (
-        <div
-          key={item.id}
-          className="card__feature"
-          onClick={() => handleRouteID(item.id)}
-        >
-          <img alt="img" src={item.background_image} />
-        </div>
+      {state.data?.map((item) => (
+        <Link to={`/game${idToken}`}>
+          <div
+            key={item.id}
+            className="card__feature"
+            onClick={() => handleRouteID(item.id)}
+          >
+            <img alt="img" src={item.background_image} />
+          </div>
+        </Link>
       ))}
     </div>
   );

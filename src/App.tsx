@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Login from "./pages/login/login";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
@@ -14,9 +14,8 @@ import usePreviousValue from "./hooks/usePreviousValue";
 
 function App() {
   const { idToken } = useLocalstorage();
-  /*const [currentRoute, setCurrentRoute] = useState("/login");
+  const [currentRoute, setCurrentRoute] = useState("/login");
   const previousRoute = usePreviousValue(currentRoute);
-  console.log(previousRoute);*/
 
   return (
     <div>
@@ -33,6 +32,7 @@ function App() {
           </Route>
 
           <Route path={`/${RouteName.REGISTER}`} element={<Register />} />
+          <Route path="*" element={<p>Not Found:404!</p>} />
         </Routes>
       </BrowserRouter>
       <Footer />

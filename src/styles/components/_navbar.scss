@@ -53,10 +53,13 @@
   display: flex;
   gap: 6px;
   padding-left: 12px;
-
+  position: absolute;
+  right: 0;
   button {
     background-color: transparent;
-    height: 8vh;
+    height: 7vh;
+    margin-top: -80px;
+    margin-right: 20px;
     border: none;
   }
 
@@ -65,19 +68,7 @@
   }
 
   img {
-    height: 9vh;
-  }
-}
-
-.form__header {
-  padding-top: 12px;
-  display: flex;
-  gap: 16px;
-  border-bottom: 1px solid rgb(191, 190, 190);
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-  div {
-    margin-bottom: 12px;
-    margin-left: 12px;
+    height: 8vh;
   }
 }
 
