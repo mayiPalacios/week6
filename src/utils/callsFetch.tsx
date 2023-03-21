@@ -54,11 +54,10 @@ export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
 
 export const getViewDetails = async () => {
   const { idToken } = useLocalstorage();
-  try {
+
+  try{
     const request = await get<Idetails>(
-      `${import.meta.env.VITE_API_URL}${idToken}?key=${
-        import.meta.env.VITE_KEY_API
-      }`
+      `${import.meta.env.VITE_API_URL}${idToken}?key=${import.meta.env.VITE_KEY_API}`
     );
     return request;
   } catch (error) {
