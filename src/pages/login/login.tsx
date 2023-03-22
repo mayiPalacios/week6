@@ -64,6 +64,9 @@ const Login = React.memo(() => {
     <main id="main__login">
       <div className="container__login">
         <form className="form__login" onSubmit={handleSubmit}>
+          <div>
+            <h1 id="prueba">{import.meta.env.VITE_LOCAL_PRUEBA}</h1>
+          </div>
           <p className="title">Log in</p>
           <input
             placeholder="Email"

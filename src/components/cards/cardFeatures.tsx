@@ -3,7 +3,6 @@ import useLocalstorage from "../../hooks/useLocalstorage";
 import { getCardFeatures } from "../../utils/callsFetch";
 import { useReducer } from "react";
 import { Link } from "react-router-dom";
-import.meta.env;
 import { State } from "../../models/typeReduce";
 import { Action } from "../../models/typeReduce";
 
