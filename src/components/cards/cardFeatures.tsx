@@ -1,28 +1,17 @@
 import React, { useState, useEffect } from "react";
 import useLocalstorage from "../../hooks/useLocalstorage";
 import { getCardFeatures } from "../../utils/callsFetch";
-import { Iresults } from "../../models/interfaceGames";
-import { IfetchResults } from "../../models/InterfaceFetch";
 import { useReducer } from "react";
 import { Link } from "react-router-dom";
 import.meta.env;
-
-type State = {
-  isLoading: boolean;
-  error?: Error;
-  data?: Iresults[] | undefined;
-};
+import { State } from "../../models/typeReduce";
+import { Action } from "../../models/typeReduce";
 
 const initialState: State = {
   isLoading: false,
   data: [],
   error: undefined,
 };
-
-type Action =
-  | { type: "FETCH_REQUEST" }
-  | { type: "FETCH_SUCCESS"; data: Iresults[] }
-  | { type: "FETCH_FAILURE"; error: Error };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {

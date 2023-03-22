@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./pages/login/login";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
@@ -9,13 +9,9 @@ import Register from "./pages/register/register";
 import RouteName from "./utils/routes";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import useLocalstorage from "./hooks/useLocalstorage";
-import { useState } from "react";
-import usePreviousValue from "./hooks/usePreviousValue";
 
 function App() {
   const { idToken } = useLocalstorage();
-  const [currentRoute, setCurrentRoute] = useState("/login");
-  const previousRoute = usePreviousValue(currentRoute);
 
   return (
     <div>

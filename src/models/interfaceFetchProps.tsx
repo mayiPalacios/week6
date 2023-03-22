@@ -1,3 +1,3 @@
-export interface IfetchProtectedRoute{
-       user:boolean;
+export interface IfetchProtectedRoute {
+  user: boolean;
 }

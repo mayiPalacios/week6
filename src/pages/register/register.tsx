@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Iresults } from "../../models/interfaceGames";
 import { Ilogin, Iuser } from "../../models/interfaceUser";
 import { getUser, postUser } from "../../utils/callsFetch";
-
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [data, setData] = useState<Ilogin[]>();
@@ -12,6 +11,7 @@ const Register = () => {
   const [userPassword, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertData, setAlertData] = useState<string>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +21,6 @@ const Register = () => {
       } catch (error: any) {
         <div>error</div>;
       }
-       
     };
     fetchData();
   }, []);
@@ -42,20 +41,19 @@ const Register = () => {
     setLastName(event.target.value);
   }
 
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-   
+
     const post: Iuser = {
       name: userName,
-      lastName: userLastNam, 
+      lastName: userLastNam,
       email: userEmail,
       password: userPassword,
     };
-         
-   try {
+
+    try {
       const response = await postUser(post);
-        console.log(response);
+      console.log(response);
       setAlertData("User registered successfully!");
       setShowAlert(true);
     } catch (error) {
@@ -65,7 +63,9 @@ const Register = () => {
     }
   };
 
-  const handleRouteLogin = () => {};
+  const handleRouteLogin = () => {
+    navigate("/login");
+  };
 
   if (showAlert) {
     return (
@@ -89,6 +89,7 @@ const Register = () => {
       <div className="container__register">
         <form className="form__register" onSubmit={handleSubmit}>
           <p className="title">Register</p>
+
           <input
             placeholder="Email"
             type="email"
@@ -96,36 +97,36 @@ const Register = () => {
             onChange={handleEmail}
             autoFocus
           />
-
           <i className="fa fa-user"></i>
+
           <input
             type="password"
             placeholder="Password"
             id="password"
             onChange={handlePassword}
           />
+          <i className="fa fa-key"></i>
 
-          <i className="fa fa-user"></i>
           <input
             type="name"
             placeholder="name"
             id="name"
             onChange={handleName}
           />
-
           <i className="fa fa-user"></i>
+
           <input
             type="last__name"
             placeholder="Last name"
             id="last__name"
             onChange={handleLastname}
           />
+          <i className="fa fa-user"></i>
 
           <div className="btn__sign">
             <a onClick={handleRouteLogin}>Sign In</a>
           </div>
 
-          <i className="fa fa-key"></i>
           <button type="submit">
             <i className="spinner"></i>
             <span className="state">register</span>

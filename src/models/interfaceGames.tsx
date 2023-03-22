@@ -1,5 +1,3 @@
-import { platform } from "os";
-
 export interface Iresults {
   id: number;
   background_image: string;

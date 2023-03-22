@@ -1,9 +1,5 @@
 import { get, post } from "./fetchMethods";
-import {
-  IfetchPlatforms,
-  IfetchResults,
-  IfetchUsers,
-} from "../models/InterfaceFetch";
+import { IfetchResults } from "../models/InterfaceFetch";
 import { Icomment, Ilogin, Iuser } from "../models/interfaceUser";
 import useLocalstorage from "../hooks/useLocalstorage";
 import { Idetails } from "../models/interfaceGames";

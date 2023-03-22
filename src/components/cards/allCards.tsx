@@ -4,6 +4,7 @@ import { getAllCards } from "../../utils/callsFetch";
 import { Iresults } from "../../models/interfaceGames";
 import { Link, useNavigate } from "react-router-dom";
 import useLocalstorage from "../../hooks/useLocalstorage";
+import img from "../../IMG/defaultImg.png";
 
 const AllCards = () => {
   const [data, setData] = useState<Iresults[] | null>();
@@ -44,7 +45,6 @@ const AllCards = () => {
       )}`,
       { replace: true }
     );
-    window.location.reload();
   }, 2000);
 
   function handleSelectOption(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -61,6 +61,7 @@ const AllCards = () => {
     }
   };
 
+  const defaultImg = img;
   return (
     <div>
       <div className="inpt__wrapper">
