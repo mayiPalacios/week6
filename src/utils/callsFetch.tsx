@@ -7,9 +7,7 @@ import { Idetails } from "../models/interfaceGames";
 export const getCardFeatures = async () => {
   try {
     const request = await get<IfetchResults>(
-      `${import.meta.env.VITE_API_URL}?key=${
-        import.meta.env.VITE_KEY_API
-      }&page_size=6&page=3`
+      `https://api.rawg.io/api/games?key=f99f9038acea4c0c9fdf996f2eb9a1d5&page_size=6&page=3`
     );
 
     return request;
@@ -24,9 +22,7 @@ export const getGeneralCards = async (
 ) => {
   try {
     const request = await get<IfetchResults>(
-      `${import.meta.env.VITE_API_URL}?key=${
-        import.meta.env.VITE_KEY_API
-      }&page_size=${itemsPerPage}&page=${currentPage}`
+      `https://api.rawg.io/api/games?key=f99f9038acea4c0c9fdf996f2eb9a1d5&page_size=${itemsPerPage}&page=${currentPage}`
     );
     return request;
   } catch (error) {
@@ -37,9 +33,7 @@ export const getGeneralCards = async (
 export const getAllCards = async (itemsPerPage: number, itemSearch: string) => {
   try {
     const request = await get<IfetchResults>(
-      `${import.meta.env.VITE_API_URL}?key=${
-        import.meta.env.VITE_KEY_API
-      }&page_size=${itemsPerPage}${itemSearch}
+      `https://api.rawg.io/api/games?key=f99f9038acea4c0c9fdf996f2eb9a1d5&page_size=${itemsPerPage}${itemSearch}
         `
     );
     return request;
@@ -52,9 +46,7 @@ export const getViewDetails = async () => {
   const { idToken } = useLocalstorage();
   try {
     const request = await get<Idetails>(
-      `${import.meta.env.VITE_API_URL}${idToken}?key=${
-        import.meta.env.VITE_KEY_API
-      }`
+      `https://api.rawg.io/api/games${idToken}?key=f99f9038acea4c0c9fdf996f2eb9a1d5`
     );
     return request;
   } catch (error) {
@@ -64,7 +56,9 @@ export const getViewDetails = async () => {
 
 export const getUser = async () => {
   try {
-    const request = await get<Ilogin[]>(`${import.meta.env.VITE_LOCAL_API}`);
+    const request = await get<Ilogin[]>(
+      `https://eminent-incandescent-peripheral.glitch.me/users`
+    );
     return request;
   } catch (error) {
     console.log(error);
@@ -74,7 +68,7 @@ export const getUser = async () => {
 export const postUser = async (body: Iuser) => {
   try {
     const response = post<Iuser, Iuser>(
-      `${import.meta.env.VITE_LOCAL_API}`,
+      `https://eminent-incandescent-peripheral.glitch.me/users`,
       body,
       { headers: { "Content-Type": "application/json" } }
     );
@@ -87,7 +81,7 @@ export const postUser = async (body: Iuser) => {
 export const postComment = async (body: Icomment) => {
   try {
     const response = post<Icomment, Icomment>(
-      `${import.meta.env.VITE_LOCAL_API_COMMENTS}`,
+      `https://eminent-incandescent-peripheral.glitch.me/comments`,
       body,
       { headers: { "Content-Type": "application/json" } }
     );
@@ -100,7 +94,7 @@ export const postComment = async (body: Icomment) => {
 export const getComment = async () => {
   try {
     const response = get<Icomment[]>(
-      `${import.meta.env.VITE_LOCAL_API_COMMENTS}`
+      `https://eminent-incandescent-peripheral.glitch.me/comments`
     );
     console.log(response);
     return response;
