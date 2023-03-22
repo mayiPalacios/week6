@@ -1,26 +1,23 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/login");
+    if ("userlog" in localStorage) {
+      localStorage.removeItem("userlog");
+    }
+  };
 
   return (
     <nav>
-      <div className="form__header">
-        <div className="containter__btn--navbar">
-          <button id="btn__exit--navbar" >
-            <img
-              alt=""
-              src="https://cdn-icons-png.flaticon.com/512/2760/2760599.png"
-            />
-          </button>
-
-          <button id="btn__home--navbar">
-            <img
-              alt="img"
-              src="https://cdn-icons-png.flaticon.com/512/3959/3959344.png"
-            />
-          </button>
-        </div>
-      </div>
+      <button id="btn__exit--navbar" onClick={handleClick}>
+        <img
+          alt=""
+          src="https://cdn-icons-png.flaticon.com/512/2760/2760599.png"
+        />
+      </button>
     </nav>
   );
 };

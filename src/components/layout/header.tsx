@@ -1,7 +1,6 @@
 import React from "react";
 
 const Header = React.memo(() => {
-
   return (
     <header>
       <div className="container__logo">

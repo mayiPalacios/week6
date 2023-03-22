@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Login = React.memo(() => {
@@ -6,36 +7,38 @@ const Login = React.memo(() => {
   const [password, setPassword] = useState("");
   const { login, error } = useAuth();
   const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
-  function handleEmailChange(event) {
+  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
+    console.log(event.target.value);
   }
 
-  function handlePasswordChange(event) {
+  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
   }
-  /*
+
   const handleSubmit = useCallback(
-    async (event) => {
+    async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       try {
         const userFound = await login(email, password);
 
         if (userFound) {
-    
           localStorage.setItem("userlog", JSON.stringify(userFound));
+          navigate("/home");
         } else {
           setShowAlert(true);
         }
       } catch (error) {}
     },
-    [email, password, setRoute, login]
-  );*/
-  /*
+    [email, password, login]
+  );
+
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
-*/ /*
+
   if (showAlert) {
     return (
       <div className="container__alert">
@@ -54,22 +57,35 @@ const Login = React.memo(() => {
   }
 
   const handleRouteRegister = () => {
-    setRoute("/register");
+    navigate("/register");
   };
-*/
+
   return (
     <main id="main__login">
       <div className="container__login">
-        <form className="form__login">
+        <form className="form__login" onSubmit={handleSubmit}>
           <p className="title">Log in</p>
-          <input placeholder="Email" type="email" id="email" autoFocus />
+          <input
+            placeholder="Email"
+            type="email"
+            id="email"
+            autoFocus
+            value={email}
+            onChange={handleEmailChange}
+          />
           <i className="fa fa-user"></i>
-          <input type="password" placeholder="Password" id="password" />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <i className="fa fa-key"></i>
           <div className="btn__sign">
-            <a>Sign Up</a>
+            <a onClick={handleRouteRegister}>Sign Up</a>
           </div>
 
-          <i className="fa fa-key"></i>
           <button type="submit">
             <i className="spinner"></i>
             <span className="state">Log in</span>

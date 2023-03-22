@@ -1,27 +1,58 @@
-import React from "react";
-import useFetch from "../../utils/createRequest";
-import { IfetchProps } from "../../utils/createRequest";
+import React, { useState, useEffect } from "react";
+import useLocalstorage from "../../hooks/useLocalstorage";
+import { getCardFeatures } from "../../utils/callsFetch";
+import { useReducer } from "react";
+import { Link } from "react-router-dom";
+import.meta.env;
+import { State } from "../../models/typeReduce";
+import { Action } from "../../models/typeReduce";
 
-const props: IfetchProps = {
-  url: "https://api.rawg.io/api/games",
-  params: "&page_size=6&page=3",
-  typeMethod: "GET",
-  key: "key=f99f9038acea4c0c9fdf996f2eb9a1d5",
-  id: "",
+const initialState: State = {
+  isLoading: false,
+  data: [],
+  error: undefined,
 };
 
-const CardFeatures = React.memo(() => {
-  const { data, error, isLoading } = useFetch(props);
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "FETCH_REQUEST":
+      return { isLoading: true, error: undefined, data: [] };
+    case "FETCH_SUCCESS":
+      return { isLoading: false, data: action.data || state.data };
+    case "FETCH_FAILURE":
+      return { isLoading: false, error: action.error };
+    default:
+      return state;
+  }
+}
 
-  if (error) {
+const CardFeatures = React.memo(() => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { idToken } = useLocalstorage();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const req = await getCardFeatures();
+        if (req) {
+          dispatch({ type: "FETCH_SUCCESS", data: req?.results });
+        }
+      } catch (error) {
+        dispatch({ type: "FETCH_FAILURE", error: error as Error });
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (state.error) {
     return <div>Error al recuperar los datos de la API</div>;
   }
 
-  if (isLoading) {
+  if (state.isLoading) {
     return <div>Cargando...</div>;
   }
 
-  const handleRouteID = (id) => {
+  const handleRouteID = (id: number) => {
     if ("gameID" in localStorage) {
       localStorage.removeItem("gameID");
       localStorage.setItem("gameID", "/" + id);
@@ -32,14 +63,16 @@ const CardFeatures = React.memo(() => {
 
   return (
     <div className="container_card--feature">
-      {data.results?.map((item) => (
-        <div
-          key={item.id}
-          className="card__feature"
-          onClick={() => handleRouteID(item.id)}
-        >
-          <img alt="img" src={item.background_image} />
-        </div>
+      {state.data?.map((item) => (
+        <Link to={`/game${idToken}`}>
+          <div
+            key={item.id}
+            className="card__feature"
+            onClick={() => handleRouteID(item.id)}
+          >
+            <img alt="img" src={item.background_image} />
+          </div>
+        </Link>
       ))}
     </div>
   );

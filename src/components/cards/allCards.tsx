@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
+import { getAllCards } from "../../utils/callsFetch";
+import { Iresults } from "../../models/interfaceGames";
+import { Link, useNavigate } from "react-router-dom";
+import useLocalstorage from "../../hooks/useLocalstorage";
+import img from "../../IMG/defaultImg.png";
 
 const AllCards = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Iresults[] | null>();
   const [isLoading, setIsLoading] = useState(false);
   const [itemSearch, setSearch] = useState("");
-  const [itemsPerPage, setItemPage] = useState(10);
+  const [itemsPerPage, setItemPage] = useState<number>(10);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { idToken } = useLocalstorage();
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const request = await fetch(
-          `https://api.rawg.io/api/games?key=f99f9038acea4c0c9fdf996f2eb9a1d5&page_size=${itemsPerPage}${itemSearch}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        const data = await request.json();
+        const request = await getAllCards(itemsPerPage, itemSearch);
 
-        setData(data.results);
-        if (request.ok) {
-        }
-      } catch (error) {
+        setData(request?.results);
+      } catch (error: any) {
         setError(error);
       }
-      setIsLoading(error);
+      setIsLoading(false);
     };
     fetchData();
   }, [itemsPerPage, error, itemSearch]);
@@ -37,18 +35,24 @@ const AllCards = () => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
   const debouncedFunction = debounce((event) => {
     setSearch("&search=" + event.target.value);
-  }, 1000);
+    navigate(
+      `/allcards/?page=${itemsPerPage}&search=${encodeURIComponent(
+        event.target.value
+      )}`,
+      { replace: true }
+    );
+  }, 2000);
 
-  const handleSelectOption = (event) => {
-    setItemPage(event.target.value);
-  };
+  function handleSelectOption(event: React.ChangeEvent<HTMLSelectElement>) {
+    const copyOption = parseInt(event.target.value);
+    setItemPage(copyOption);
+  }
 
-  const handleRouteID = (id) => {
-    setRoute("/game");
+  const handleRouteID = (id: number) => {
     if ("gameID" in localStorage) {
       localStorage.removeItem("gameID");
       localStorage.setItem("gameID", "/" + id);
@@ -57,6 +61,7 @@ const AllCards = () => {
     }
   };
 
+  const defaultImg = img;
   return (
     <div>
       <div className="inpt__wrapper">
@@ -93,15 +98,17 @@ const AllCards = () => {
         <div className="container__all--items">
           {data?.map((item) => (
             <div key={item.id} className="card__all">
-              <button onClick={() => handleRouteID(item.id)}>
-                <div
-                  className="card__all--img"
-                  style={{
-                    backgroundImage: "url(" + item.background_image + ")",
-                  }}
-                ></div>
-                <span>{item.name}</span>
-              </button>
+              <Link to={`/game${idToken}`}>
+                <button onClick={() => handleRouteID(item.id)}>
+                  <div
+                    className="card__all--img"
+                    style={{
+                      backgroundImage: "url(" + item.background_image + ")",
+                    }}
+                  ></div>
+                  <span>{item.name}</span>
+                </button>
+              </Link>
             </div>
           ))}
         </div>
