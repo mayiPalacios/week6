@@ -9,14 +9,9 @@ import Register from "./pages/register/register";
 import RouteName from "./utils/routes";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import useLocalstorage from "./hooks/useLocalstorage";
-import { useState } from "react";
-import usePreviousValue from "./hooks/usePreviousValue";
 
 function App() {
   const { idToken } = useLocalstorage();
-  /*const [currentRoute, setCurrentRoute] = useState("/login");
-  const previousRoute = usePreviousValue(currentRoute);
-  console.log(previousRoute);*/
 
   return (
     <div>
@@ -33,6 +28,7 @@ function App() {
           </Route>
 
           <Route path={`/${RouteName.REGISTER}`} element={<Register />} />
+          <Route path="*" element={<p>Not Found:404!</p>} />
         </Routes>
       </BrowserRouter>
       <Footer />

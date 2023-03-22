@@ -1,9 +1,5 @@
 import { get, post } from "./fetchMethods";
-import {
-  IfetchPlatforms,
-  IfetchResults,
-  IfetchUsers,
-} from "../models/InterfaceFetch";
+import { IfetchResults } from "../models/InterfaceFetch";
 import { Icomment, Ilogin, Iuser } from "../models/interfaceUser";
 import useLocalstorage from "../hooks/useLocalstorage";
 import { Idetails } from "../models/interfaceGames";
@@ -103,7 +99,7 @@ export const postComment = async (body: Icomment) => {
 
 export const getComment = async () => {
   try {
-    const response = get<Icomment>(
+    const response = get<Icomment[]>(
       `${import.meta.env.VITE_LOCAL_API_COMMENTS}`
     );
     console.log(response);

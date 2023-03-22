@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Fragment } from "react";
 import Comments from "../comments/comments";
-import useFetch from "../../utils/createRequest";
 import startImage from "../../IMG/star.png";
 import remoteImg from "../../IMG/remote.png";
 import { getViewDetails } from "../../utils/callsFetch";
-import { Idetails, Iresults } from "../../models/interfaceGames";
-import { Iplatforms } from "../../models/interfaceGames";
-import { Iuser } from "../../models/interfaceUser";
+import { Idetails } from "../../models/interfaceGames";
 import { useLocation } from "react-router-dom";
 
 const MainGame = React.memo(() => {
@@ -16,10 +13,9 @@ const MainGame = React.memo(() => {
   const [data, setData] = useState<Idetails>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  /* const { data, error, isLoading } = useFetch(url, "", "GET", key, id);*/
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Mover el scroll a la parte superior de la página
+    window.scrollTo(0, 0);
   }, [location]);
 
   useEffect(() => {
@@ -39,7 +35,7 @@ const MainGame = React.memo(() => {
     return <div>Cargando...</div>;
   }
 
-  const paragraph = data?.description;
+  const paragraph = data?.description ? data?.description : "";
 
   return (
     <main className="main__game">

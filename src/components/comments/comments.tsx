@@ -5,14 +5,14 @@ import { Icomment } from "../../models/interfaceUser";
 import { getComment } from "../../utils/callsFetch";
 import { postComment } from "../../utils/callsFetch";
 
-const Comments = () => {
+const Comments = React.memo(() => {
   const { idToken, token } = useLocalstorage();
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(true);
   const [comment, setcomment] = useState("");
-  const [data, setData] = useState<Icomment>();
-  const thisID = parseInt(idToken?.replace("/", ""));
-  const userLog = JSON.parse(token);
+  const [data, setData] = useState<Icomment[]>();
+  const thisID = idToken ? parseInt(idToken?.replace("/", "")) : "";
+  const userLog = token ? JSON.parse(token) : "";
   const [available, setAvailable] = useState<Icomment>();
 
   useEffect(() => {
@@ -30,10 +30,6 @@ const Comments = () => {
 
     fetchData();
   }, [available]);
-
-  if (!data) {
-    return;
-  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,6 +58,8 @@ const Comments = () => {
     return <p>{error.message}</p>;
   }
 
+  const copydata = data ? data : [];
+
   return (
     <section className="container__section--comments">
       <div className="container__title--comments">
@@ -69,10 +67,10 @@ const Comments = () => {
       </div>
 
       <div className="container__value--comments">
-        {data
-          .filter((datas) => parseInt(datas.post_id) === thisID)
+        {copydata
+          .filter((datas) => datas.post_id == thisID)
           .map((datas) => (
-            <div key={datas.id}>
+            <div key={datas.post_id}>
               <h6>{datas.name_user + " " + datas.last_name}</h6>
               <p>{datas.comment}</p>
             </div>
@@ -94,6 +92,6 @@ const Comments = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Comments;
